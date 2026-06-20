@@ -194,9 +194,9 @@
 
   async function loadPosts() {
     const { data, error } = await db
-      .from('posts')
+      .from('messages')
       .select('*')
-      .order('created_at', { ascending: false })
+      .order('id', { ascending: false })
       .limit(50);
 
     if (error) {
@@ -212,10 +212,10 @@
     postList.innerHTML = data.map(p => `
       <div class="post-card">
         <div class="post-meta">
-          <span class="post-author">${esc(p.author || '名無しさん')}</span>
-          <span class="post-date">${formatDate(p.created_at)}</span>
+          <span class="post-author">${esc(p.name || '名無しさん')}</span>
+          <span class="post-date">${esc(p.room || '')}</span>
         </div>
-        <div class="post-content">${esc(p.content)}</div>
+        <div class="post-content">${esc(p.body || '')}</div>
       </div>
     `).join('');
   }
@@ -232,9 +232,10 @@
     submitBtn.disabled = true;
     showMsg('投稿中...', '');
 
-    const { error } = await db.from('posts').insert([{
-      author:  author || '名無しさん',
-      content: content
+    const { error } = await db.from('messages').insert([{
+      name: author || '名無しさん',
+      body: content,
+      room: 'general'
     }]);
 
     if (error) {
