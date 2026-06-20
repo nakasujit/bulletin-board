@@ -25,33 +25,59 @@
     letter-spacing: 1px;
   }
 
-  /* ─── 認証バー ─── */
-  .auth-bar {
+  /* タブ */
+  .tabs {
+    display: flex;
     max-width: 560px;
-    margin: 0 auto 24px;
+    margin: 0 auto 20px;
+    background: #fff;
+    border-radius: 10px;
+    padding: 4px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    gap: 4px;
+  }
+
+  .tab-btn {
+    flex: 1;
+    padding: 9px;
+    border: none;
+    border-radius: 7px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    cursor: pointer;
+    background: transparent;
+    color: #a0aec0;
+    transition: all 0.2s;
+  }
+
+  .tab-btn.active { background: #3182ce; color: #fff; }
+
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  /* 共通カード */
+  .card {
     background: #fff;
     border-radius: 14px;
-    padding: 16px 20px;
+    padding: 20px;
+    max-width: 560px;
+    margin: 0 auto 20px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.07);
   }
 
-  .auth-status {
-    font-size: 0.88rem;
+  .card label {
+    display: block;
+    font-size: 0.82rem;
+    font-weight: 700;
     color: #718096;
-    margin-bottom: 12px;
-    text-align: center;
+    margin-bottom: 6px;
+    margin-top: 14px;
   }
 
-  .auth-status span { font-weight: 700; color: #38a169; }
+  .card label:first-child { margin-top: 0; }
 
-  .auth-fields {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    margin-bottom: 10px;
-  }
-
-  .auth-fields input {
+  .card input,
+  .card textarea {
     width: 100%;
     padding: 10px 14px;
     border: 2px solid #e2e8f0;
@@ -63,125 +89,55 @@
     transition: border-color 0.2s;
   }
 
-  .auth-fields input:focus {
-    border-color: #3182ce;
-    background: #fff;
-  }
+  .card input:focus,
+  .card textarea:focus { border-color: #3182ce; background: #fff; }
 
-  .auth-btns {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-  }
+  .card textarea { resize: vertical; min-height: 80px; }
 
-  .auth-btns button {
-    flex: 1;
-    padding: 10px;
+  /* ボタン群 */
+  .btn {
+    padding: 11px 20px;
     border: none;
     border-radius: 8px;
-    font-size: 0.9rem;
+    font-size: 0.92rem;
     font-weight: 700;
     cursor: pointer;
     transition: background 0.2s, opacity 0.2s;
   }
 
-  .btn-signup   { background: #48bb78; color: #fff; }
-  .btn-login    { background: #3182ce; color: #fff; }
-  .btn-logout   { background: #fc8181; color: #fff; width: 100%; padding: 10px; border: none; border-radius: 8px; font-size: 0.9rem; font-weight: 700; cursor: pointer; transition: background 0.2s; }
+  .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+  .btn-primary  { background: #3182ce; color: #fff; }
+  .btn-primary:hover:not(:disabled)  { background: #2b6cb0; }
+  .btn-green    { background: #48bb78; color: #fff; }
+  .btn-green:hover:not(:disabled)    { background: #38a169; }
+  .btn-red      { background: #fc8181; color: #fff; }
+  .btn-red:hover:not(:disabled)      { background: #e53e3e; }
+  .btn-full     { width: 100%; margin-top: 14px; padding: 13px; }
 
-  .btn-signup:hover { background: #38a169; }
-  .btn-login:hover  { background: #2b6cb0; }
-  .btn-logout:hover { background: #e53e3e; }
+  .btn-row { display: flex; gap: 8px; margin-top: 14px; }
+  .btn-row .btn { flex: 1; }
 
-  .auth-msg {
+  /* メッセージ */
+  .notice {
+    font-size: 0.85rem;
     text-align: center;
-    font-size: 0.82rem;
-    margin-top: 8px;
+    margin-top: 10px;
     min-height: 18px;
   }
-  .auth-msg.success { color: #38a169; }
-  .auth-msg.error   { color: #e53e3e; }
+  .notice.success { color: #38a169; }
+  .notice.error   { color: #e53e3e; }
+  .notice.info    { color: #718096; }
 
-  /* ─── 投稿フォーム ─── */
-  .form-card {
-    background: #fff;
-    border-radius: 14px;
-    padding: 20px;
-    max-width: 560px;
-    margin: 0 auto 32px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
-  }
-
-  .form-card label {
-    display: block;
-    font-size: 0.82rem;
-    font-weight: 700;
-    color: #718096;
-    margin-bottom: 6px;
-    margin-top: 14px;
-  }
-
-  .form-card label:first-child { margin-top: 0; }
-
-  .form-card input,
-  .form-card textarea {
-    width: 100%;
-    padding: 10px 14px;
-    border: 2px solid #e2e8f0;
-    border-radius: 8px;
-    font-size: 0.97rem;
-    font-family: inherit;
-    outline: none;
-    transition: border-color 0.2s;
-    background: #f7f8fa;
-  }
-
-  .form-card input:focus,
-  .form-card textarea:focus {
-    border-color: #3182ce;
-    background: #fff;
-  }
-
-  .form-card textarea {
-    resize: vertical;
-    min-height: 90px;
-  }
-
-  .submit-btn {
-    width: 100%;
-    margin-top: 16px;
-    padding: 13px;
-    background: #3182ce;
-    color: #fff;
-    border: none;
-    border-radius: 8px;
-    font-size: 1rem;
-    font-weight: 700;
-    cursor: pointer;
-    transition: background 0.2s;
-  }
-
-  .submit-btn:hover { background: #2b6cb0; }
-  .submit-btn:disabled { background: #a0aec0; cursor: not-allowed; }
-
-  .msg {
-    text-align: center;
+  /* 認証バー */
+  .auth-status {
     font-size: 0.88rem;
-    margin-top: 10px;
-    min-height: 20px;
-  }
-
-  .msg.success { color: #38a169; }
-  .msg.error   { color: #e53e3e; }
-
-  .login-required {
+    color: #718096;
+    margin-bottom: 12px;
     text-align: center;
-    color: #a0aec0;
-    font-size: 0.92rem;
-    padding: 20px 0 8px;
   }
+  .auth-status strong { color: #38a169; }
 
-  /* ─── 投稿一覧 ─── */
+  /* 投稿一覧 */
   .posts-header {
     max-width: 560px;
     margin: 0 auto 12px;
@@ -214,73 +170,87 @@
     gap: 8px;
   }
 
-  .post-author {
-    font-weight: 700;
-    font-size: 0.92rem;
-    color: #3182ce;
-  }
-
-  .post-date {
-    font-size: 0.78rem;
-    color: #a0aec0;
-    white-space: nowrap;
-  }
-
-  .post-content {
-    font-size: 0.95rem;
-    line-height: 1.7;
-    white-space: pre-wrap;
-    word-break: break-all;
-  }
+  .post-author { font-weight: 700; font-size: 0.92rem; color: #3182ce; }
+  .post-date   { font-size: 0.78rem; color: #a0aec0; white-space: nowrap; }
+  .post-content { font-size: 0.95rem; line-height: 1.7; white-space: pre-wrap; word-break: break-all; }
 
   .empty   { text-align: center; color: #a0aec0; padding: 40px 0; font-size: 0.95rem; }
   .loading { text-align: center; color: #a0aec0; padding: 32px 0; }
+  .hidden  { display: none !important; }
 
-  .hidden { display: none; }
+  .login-notice { text-align: center; color: #a0aec0; font-size: 0.92rem; padding: 12px 0; }
 </style>
 </head>
 <body>
 
 <h1>💬 掲示板</h1>
 
-<!-- 認証バー -->
-<div class="auth-bar">
-  <!-- 未ログイン時 -->
-  <div id="authForm">
+<!-- タブ -->
+<div class="tabs">
+  <button class="tab-btn active" data-tab="board">掲示板</button>
+  <button class="tab-btn"        data-tab="profile">プロフィール</button>
+  <button class="tab-btn"        data-tab="auth">アカウント</button>
+</div>
+
+<!-- ========== 掲示板タブ ========== -->
+<div class="tab-panel active" id="tab-board">
+
+  <div class="card" id="postForm">
+    <div class="login-notice hidden" id="loginNotice">投稿するにはログインしてください</div>
+    <div id="postFields">
+      <label>投稿者名（任意）</label>
+      <input type="text" id="author" placeholder="名無しさん" maxlength="50" />
+      <label>投稿内容</label>
+      <textarea id="content" placeholder="メッセージを入力..." maxlength="1000"></textarea>
+      <button class="btn btn-primary btn-full" id="submitBtn">投稿する</button>
+      <div class="notice" id="postMsg"></div>
+    </div>
+  </div>
+
+  <div class="posts-header">投稿一覧</div>
+  <div class="post-list" id="postList">
+    <div class="loading">読み込み中...</div>
+  </div>
+</div>
+
+<!-- ========== プロフィールタブ ========== -->
+<div class="tab-panel" id="tab-profile">
+  <div class="card">
+    <div class="login-notice" id="profileLoginNotice">プロフィールを編集するにはログインしてください</div>
+    <div id="profileFields" class="hidden">
+      <label>名前</label>
+      <input type="text" id="profileName" placeholder="あなたの名前" maxlength="50" />
+      <label>自己紹介</label>
+      <textarea id="profileBio" placeholder="自己紹介を書いてください" maxlength="500"></textarea>
+      <label>リンク（URL など）</label>
+      <input type="text" id="profileLinks" placeholder="https://..." maxlength="300" />
+      <button class="btn btn-green btn-full" id="saveProfileBtn">保存する</button>
+      <div class="notice" id="profileMsg"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== アカウントタブ ========== -->
+<div class="tab-panel" id="tab-auth">
+  <!-- 未ログイン -->
+  <div class="card" id="authForm">
     <div class="auth-status">ログインしていません</div>
-    <div class="auth-fields">
-      <input type="email"    id="authEmail"    placeholder="メールアドレス" />
-      <input type="password" id="authPassword" placeholder="パスワード" />
+    <label>メールアドレス</label>
+    <input type="email"    id="authEmail"    placeholder="example@mail.com" />
+    <label>パスワード</label>
+    <input type="password" id="authPassword" placeholder="パスワード" />
+    <div class="btn-row">
+      <button class="btn btn-green" id="signupBtn">新規登録</button>
+      <button class="btn btn-primary" id="loginBtn">ログイン</button>
     </div>
-    <div class="auth-btns">
-      <button class="btn-signup" id="signupBtn">新規登録</button>
-      <button class="btn-login"  id="loginBtn">ログイン</button>
-    </div>
-    <div class="auth-msg" id="authMsg"></div>
+    <div class="notice" id="authMsg"></div>
   </div>
+
   <!-- ログイン中 -->
-  <div id="authUser" class="hidden">
-    <div class="auth-status">ログイン中：<span id="userEmail"></span></div>
-    <button class="btn-logout" id="logoutBtn">ログアウト</button>
+  <div class="card hidden" id="authUser">
+    <div class="auth-status">ログイン中：<strong id="userEmail"></strong></div>
+    <button class="btn btn-red btn-full" id="logoutBtn">ログアウト</button>
   </div>
-</div>
-
-<!-- 投稿フォーム（ログイン時のみ表示） -->
-<div class="form-card" id="postForm">
-  <div class="login-required" id="loginNotice">投稿するにはログインしてください</div>
-  <div id="postFields" class="hidden">
-    <label>投稿者名（任意）</label>
-    <input type="text" id="author" placeholder="名無しさん" maxlength="50" />
-    <label>投稿内容</label>
-    <textarea id="content" placeholder="メッセージを入力..." maxlength="1000"></textarea>
-    <button class="submit-btn" id="submitBtn">投稿する</button>
-    <div class="msg" id="msg"></div>
-  </div>
-</div>
-
-<div class="posts-header">投稿一覧</div>
-<div class="post-list" id="postList">
-  <div class="loading">読み込み中...</div>
 </div>
 
 <script>
@@ -290,53 +260,63 @@
   const { createClient } = supabase;
   const db = createClient(SUPABASE_URL, SUPABASE_KEY);
 
-  const submitBtn  = document.getElementById('submitBtn');
-  const msg        = document.getElementById('msg');
-  const postList   = document.getElementById('postList');
-  const authMsg    = document.getElementById('authMsg');
-  const authForm   = document.getElementById('authForm');
-  const authUser   = document.getElementById('authUser');
-  const userEmail  = document.getElementById('userEmail');
-  const postFields = document.getElementById('postFields');
-  const loginNotice= document.getElementById('loginNotice');
+  // ─── タブ切り替え ───
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+    });
+  });
 
   // ─── 認証状態の反映 ───
+  let currentUser = null;
+
   function applySession(session) {
-    if (session) {
-      authForm.classList.add('hidden');
-      authUser.classList.remove('hidden');
-      userEmail.textContent = session.user.email;
-      postFields.classList.remove('hidden');
-      loginNotice.classList.add('hidden');
+    currentUser = session?.user ?? null;
+
+    // アカウントタブ
+    if (currentUser) {
+      document.getElementById('authForm').classList.add('hidden');
+      document.getElementById('authUser').classList.remove('hidden');
+      document.getElementById('userEmail').textContent = currentUser.email;
     } else {
-      authForm.classList.remove('hidden');
-      authUser.classList.add('hidden');
-      postFields.classList.add('hidden');
-      loginNotice.classList.remove('hidden');
+      document.getElementById('authForm').classList.remove('hidden');
+      document.getElementById('authUser').classList.add('hidden');
     }
+
+    // 投稿フォーム
+    document.getElementById('postFields').classList.toggle('hidden', !currentUser);
+    document.getElementById('loginNotice').classList.toggle('hidden', !!currentUser);
+
+    // プロフィールフォーム
+    document.getElementById('profileFields').classList.toggle('hidden', !currentUser);
+    document.getElementById('profileLoginNotice').classList.toggle('hidden', !!currentUser);
+
+    if (currentUser) loadProfile();
   }
 
   db.auth.getSession().then(({ data }) => applySession(data.session));
-
-  db.auth.onAuthStateChange((_event, session) => applySession(session));
+  db.auth.onAuthStateChange((_e, session) => applySession(session));
 
   // ─── 新規登録 ───
   document.getElementById('signupBtn').addEventListener('click', async () => {
-    const email    = document.getElementById('authEmail').value.trim();
-    const password = document.getElementById('authPassword').value;
-    if (!email || !password) { showAuthMsg('メールとパスワードを入力してください', 'error'); return; }
-    const { error } = await db.auth.signUp({ email, password });
-    if (error) showAuthMsg(error.message, 'error');
-    else showAuthMsg('確認メールを送りました。メールを確認してください。', 'success');
+    const email = document.getElementById('authEmail').value.trim();
+    const pass  = document.getElementById('authPassword').value;
+    if (!email || !pass) { showNotice('authMsg', 'メールとパスワードを入力してください', 'error'); return; }
+    const { error } = await db.auth.signUp({ email, password: pass });
+    if (error) showNotice('authMsg', error.message, 'error');
+    else showNotice('authMsg', '確認メールを送りました。メールを確認してください。', 'success');
   });
 
   // ─── ログイン ───
   document.getElementById('loginBtn').addEventListener('click', async () => {
-    const email    = document.getElementById('authEmail').value.trim();
-    const password = document.getElementById('authPassword').value;
-    if (!email || !password) { showAuthMsg('メールとパスワードを入力してください', 'error'); return; }
-    const { error } = await db.auth.signInWithPassword({ email, password });
-    if (error) showAuthMsg(error.message, 'error');
+    const email = document.getElementById('authEmail').value.trim();
+    const pass  = document.getElementById('authPassword').value;
+    if (!email || !pass) { showNotice('authMsg', 'メールとパスワードを入力してください', 'error'); return; }
+    const { error } = await db.auth.signInWithPassword({ email, password: pass });
+    if (error) showNotice('authMsg', error.message, 'error');
   });
 
   // ─── ログアウト ───
@@ -344,28 +324,64 @@
     await db.auth.signOut();
   });
 
-  // ─── 投稿 ───
-  submitBtn.addEventListener('click', async () => {
-    const author  = document.getElementById('author').value.trim();
-    const content = document.getElementById('content').value.trim();
-    if (!content) { showMsg('投稿内容を入力してください。', 'error'); return; }
+  // ─── プロフィール読み込み ───
+  async function loadProfile() {
+    const { data, error } = await db
+      .from('profiles')
+      .select('*')
+      .eq('user_id', currentUser.id)
+      .maybeSingle();
 
-    submitBtn.disabled = true;
-    showMsg('投稿中...', '');
+    if (error) { showNotice('profileMsg', error.message, 'error'); return; }
+    if (data) {
+      document.getElementById('profileName').value  = data.name  || '';
+      document.getElementById('profileBio').value   = data.bio   || '';
+      document.getElementById('profileLinks').value = data.links || '';
+    }
+  }
+
+  // ─── プロフィール保存（upsert） ───
+  document.getElementById('saveProfileBtn').addEventListener('click', async () => {
+    const btn = document.getElementById('saveProfileBtn');
+    btn.disabled = true;
+    showNotice('profileMsg', '保存中...', 'info');
+
+    const { error } = await db.from('profiles').upsert({
+      user_id:    currentUser.id,
+      name:       document.getElementById('profileName').value.trim(),
+      bio:        document.getElementById('profileBio').value.trim(),
+      links:      document.getElementById('profileLinks').value.trim(),
+      updated_at: new Date().toISOString()
+    }, { onConflict: 'user_id' });
+
+    if (error) showNotice('profileMsg', '保存に失敗しました: ' + error.message, 'error');
+    else       showNotice('profileMsg', '保存しました！', 'success');
+
+    btn.disabled = false;
+  });
+
+  // ─── 投稿 ───
+  document.getElementById('submitBtn').addEventListener('click', async () => {
+    const content = document.getElementById('content').value.trim();
+    if (!content) { showNotice('postMsg', '投稿内容を入力してください。', 'error'); return; }
+
+    const btn = document.getElementById('submitBtn');
+    btn.disabled = true;
+    showNotice('postMsg', '投稿中...', 'info');
 
     const { error } = await db.from('messages').insert([{
-      name: author || '名無しさん',
+      name: document.getElementById('author').value.trim() || '名無しさん',
       body: content,
       room: 'general'
     }]);
 
-    if (error) showMsg('投稿に失敗しました: ' + error.message, 'error');
+    if (error) showNotice('postMsg', '投稿に失敗しました: ' + error.message, 'error');
     else {
       document.getElementById('content').value = '';
-      showMsg('投稿しました！', 'success');
+      showNotice('postMsg', '投稿しました！', 'success');
       await loadPosts();
     }
-    submitBtn.disabled = false;
+    btn.disabled = false;
   });
 
   // ─── 投稿一覧 ───
@@ -376,10 +392,11 @@
       .order('id', { ascending: false })
       .limit(50);
 
-    if (error) { postList.innerHTML = '<div class="empty">投稿の読み込みに失敗しました。</div>'; return; }
-    if (!data || data.length === 0) { postList.innerHTML = '<div class="empty">まだ投稿がありません。</div>'; return; }
+    const list = document.getElementById('postList');
+    if (error) { list.innerHTML = '<div class="empty">読み込みに失敗しました。</div>'; return; }
+    if (!data?.length) { list.innerHTML = '<div class="empty">まだ投稿がありません。</div>'; return; }
 
-    postList.innerHTML = data.map(p => `
+    list.innerHTML = data.map(p => `
       <div class="post-card">
         <div class="post-meta">
           <span class="post-author">${esc(p.name || '名無しさん')}</span>
@@ -390,8 +407,12 @@
     `).join('');
   }
 
-  function showMsg(text, type)     { msg.textContent = text;     msg.className = 'msg ' + type; }
-  function showAuthMsg(text, type) { authMsg.textContent = text; authMsg.className = 'auth-msg ' + type; }
+  // ─── ユーティリティ ───
+  function showNotice(id, text, type) {
+    const el = document.getElementById(id);
+    el.textContent = text;
+    el.className = 'notice ' + type;
+  }
 
   function formatDate(iso) {
     if (!iso) return '';
